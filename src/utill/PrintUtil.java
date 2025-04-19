@@ -35,6 +35,7 @@ public class PrintUtil {
                 "└───────────────────────┘\n");
     }
 
+    //
     public void printCatholic(HospitalInfo hospitalInfo, long price){
         System.out.println("\t가톨릭 병원\t\t\n" +
                 "--------------------------\n" +
