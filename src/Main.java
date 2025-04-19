@@ -1,5 +1,8 @@
 import domain.Hospital;
+import domain.MedicalInfo;
+import domain.User;
 import dto.HospitalInfo;
+import utill.PriceUtil;
 import utill.PrintUtil;
 
 import java.util.Scanner;
@@ -9,33 +12,76 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         PrintUtil printUtil = new PrintUtil();
-        Hospital jomusa = new Hospital("조무사 병원", "부천");
-        Hospital catholic = new Hospital("가톨릭 병원", "서울");
-        Hospital coma = new Hospital("coma 병원", "수원");
+        PriceUtil priceUtil = new PriceUtil();
 
+        Hospital[] hospitals = new Hospital[3];
+        hospitals[0] = new Hospital("조무사 병원", "부천");
+        hospitals[1] = new Hospital("가톨릭 병원", "서울");
+        hospitals[2] = new Hospital("coma 병원", "수원");
+        String[][] diseaseList = {
+                {
+                    "골절", "골다공증", "관절질환"
+                },
+                {
+                    "감기", " 천식", "당뇨"
+                },
+                {
+                    "아토피", "백반증", "습진"
+                }
+        };
+        System.out.print("환자 이름 : ");
+        String name = sc.next();
+        System.out.print("생년 월일 : ");
+        String birth = sc.next();
+        System.out.print("혈액형 : ");
+        char bloodType = sc.next().charAt(0);
 
-            System.out.print("환자 이름 : ");
-            String name = sc.next();
-            System.out.print("생년 월일 : ");
-            String birth = sc.next();
-            System.out.print("혈액형 : ");
-            char bloodType = sc.next().charAt(0);
-            printUtil.printHospitals();
-            int hospitalName = sc.nextInt();
+        User user = new User(name, birth, bloodType);
+
+        printUtil.printHospitals();
+        int hospitalName = sc.nextInt();
+
+        MedicalInfo medicalInfo = null;
+        String[] department = {
+                "정형외과", "내과", "ㅈ피부과"
+        };
+
+        boolean validDisease = true;
+        while (validDisease) {
+
             printUtil.printDisease();
             String disease = sc.next();
-
-            HospitalInfo hospitalInfo = new HospitalInfo(name, birth, bloodType);
-
-            switch (hospitalName) {
-                case 1:
-                    printUtil.printJomusa(hospitalInfo);
-                    break;
-                case 2:
-                    printUtil.printCatholic(hospitalInfo);
-                    break;
-                case 3:
-                    printUtil.printComa(hospitalInfo);
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (disease.equals(diseaseList[i][j])) {
+                        validDisease = false;
+                        medicalInfo = new MedicalInfo(diseaseList[i][j], user, department[i]);
+                        System.out.println("!!!예약되었습니다!!!");
+                        break;
+                    }
+                }
             }
+            if (validDisease == true) {
+                System.out.println("(없는 병명입니다.)");
+            }
+        }
+
+        medicalInfo.setHospital(hospitals[hospitalName - 1]);
+
+        HospitalInfo hospitalInfo = new HospitalInfo(name, birth, bloodType);
+        hospitalInfo.setDisease(medicalInfo.getDisease());
+        hospitalInfo.setDepartment(medicalInfo.getDepartment());
+        long price = priceUtil.calculatePrice(user,medicalInfo,hospitals[hospitalName - 1]);
+        switch (hospitalName) {
+            case 1:
+                printUtil.printJomusa(hospitalInfo, price);
+                break;
+            case 2:
+                printUtil.printCatholic(hospitalInfo, price);
+                break;
+            case 3:
+                printUtil.printComa(hospitalInfo, price);
+                break;
+        }
     }
 }

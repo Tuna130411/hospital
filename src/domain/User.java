@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Arrays;
+
 public class User {
     private String name;
     private String birth;
@@ -24,7 +26,7 @@ public class User {
     }
 
     public int getAge() {
-        int year = Integer.parseInt(birth.split(".")[0]);
+        int year = Integer.parseInt(birth.split("-")[0]);
         return 2025 - year;
     }
 
