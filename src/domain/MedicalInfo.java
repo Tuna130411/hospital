@@ -5,11 +5,21 @@ public class MedicalInfo {
     private User user;
     private Hospital hospital;
     private String department;
+    private boolean isPayed;
 
     public MedicalInfo(String disease, User user, String department) {
         this.disease = disease;
         this.user = user;
         this.department = department;
+        this.isPayed = false;
+    }
+
+    public boolean isPayed() {
+        return isPayed;
+    }
+
+    public void setPayed(boolean payed) {
+        isPayed = payed;
     }
 
     public String getDisease() {
