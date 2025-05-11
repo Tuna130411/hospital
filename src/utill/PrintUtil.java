@@ -19,7 +19,7 @@ public class PrintUtil {
         System.out.print(">>> 병명을 입력하세요 : ");
     }
 
-    public void printJomusa(HospitalInfo hospitalInfo, long price, String payed){
+    public void printJomusa(HospitalInfo hospitalInfo){
         System.out.println("┌───────────────────────┐\n" +
                 "│\t" + "조무사 병원" +"\t\t    │\n" +
                 "├───────────────────────┤\n" +
@@ -30,12 +30,12 @@ public class PrintUtil {
                 "│ 진료과 : " + hospitalInfo.getDepartment() + "\t\t\t│\n" +
                 "│ 병명 : " + hospitalInfo.getDisease() + "\t\t    │\n" +
                 "├───────────────────────┤\n" +
-                "│ 진료비 : " + price + "원\t\t|\n" +
-                "│ 결제완료 : " + payed + "\t\t    │\n" +
+                "│ 진료비 : " + hospitalInfo.getPrice() + "원\t\t|\n" +
+                "│ 결제완료 : " + payedToString(hospitalInfo.isPayed()) + "\t\t    │\n" +
                 "└───────────────────────┘\n");
     }
 
-    public void printCatholic(HospitalInfo hospitalInfo, long price, String payed){
+    public void printCatholic(HospitalInfo hospitalInfo){
         System.out.println("\t가톨릭 병원\t\t\n" +
                 "--------------------------\n" +
                 " 이름 : " + hospitalInfo.getName() + "\n" +
@@ -45,11 +45,11 @@ public class PrintUtil {
                 " 진료과 : " + hospitalInfo.getDepartment() + "\n" +
                 " 병명 : " + hospitalInfo.getDisease() + "\n" +
                 "----------진료비용-----------\n" +
-                " 진료비 : " + price + "원\n" +
-                " 결제완료 : " + payed);
+                " 진료비 : " + hospitalInfo.getPrice() + "원\n" +
+                " 결제완료 : " + payedToString(hospitalInfo.isPayed()));
     }
 
-    public void printComa(HospitalInfo hospitalInfo, long price, String payed){
+    public void printComa(HospitalInfo hospitalInfo){
         System.out.println("[coma 병원]\n" +
                 "|> 이름 - " + hospitalInfo.getName() + " |  혈액형 - " + hospitalInfo.getBloodType() + "\n" +
                 "|> 생년월일 - " + hospitalInfo.getBirth() + "\n" +
@@ -57,7 +57,11 @@ public class PrintUtil {
                 "|> 진료과 - " + hospitalInfo.getDepartment() + "\n" +
                 "|> 병명 - " + hospitalInfo.getDisease() + "\n" +
                 "[진료 비용]\n" +
-                "|> 진료비 : " + price + "원\n" +
-                "|> 결제완료 : " + payed);
+                "|> 진료비 : " + hospitalInfo.getPrice() + "원\n" +
+                "|> 결제완료 : " + payedToString(hospitalInfo.isPayed()));
+    }
+
+    private String payedToString(boolean payed){
+        return payed ? "완료" : "미완";
     }
 }

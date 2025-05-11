@@ -4,13 +4,12 @@ import domain.User;
 import dto.HospitalInfo;
 import utill.PriceUtil;
 import utill.PrintUtil;
-import java.util.Scanner;
+
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        User[] users = new User[100];
 
         PrintUtil printUtil = new PrintUtil();
         PriceUtil priceUtil = new PriceUtil();
@@ -38,7 +37,6 @@ public class Main {
             int select = sc.nextInt();
 
             if (select == 1) {
-                int uc = 0;
                 System.out.print("환자 이름 : ");
                 String name = sc.next();
                 System.out.print("생년 월일 : ");
@@ -83,9 +81,6 @@ public class Main {
                     medicalInfo.setPayed(false);
                 }
 
-
-                String payed = medicalInfo.isPayed() ? "완료" : "미완";
-
                 medicalInfo.setHospital(hospitals[hospitalName - 1]);
 
                 HospitalInfo hospitalInfo = new HospitalInfo(name, birth, bloodType);
@@ -107,13 +102,13 @@ public class Main {
                 long price = priceUtil.calculatePrice(user,medicalInfo,hospitals[hospitalName - 1]);
                 switch (hospitalName) {
                     case 1:
-                        printUtil.printJomusa(hospitalInfo, price, payed);
+                        printUtil.printJomusa(hospitalInfo);
                         break;
                     case 2:
-                        printUtil.printCatholic(hospitalInfo, price, payed);
+                        printUtil.printCatholic(hospitalInfo);
                         break;
                     case 3:
-                        printUtil.printComa(hospitalInfo, price, payed);
+                        printUtil.printComa(hospitalInfo);
                         break;
                 }
             } else if (select == 2) {
@@ -122,13 +117,28 @@ public class Main {
                 System.out.print("생년 월일 : ");
                 String birth = sc.next();
 
-
+                List<HospitalInfo> userInfos = new ArrayList<>();
+                Map<HospitalInfo,String> hospitalInfomap = new HashMap<>();
 
                 for (int i = 0; i < 3; i++){
+                    List<HospitalInfo> infos = hospitals[i].getHospitalInfos();
                     for (int j = 0; j < hospitals[i].getHospitalInfos().size(); j++) {
-
+                        if (infos.get(j).getName().equals(name) && infos.get(j).getBirth().equals(birth)) {
+                            hospitalInfomap.put(infos.get(j), hospitals[i].getName());
+                        }
                     }
                 }
+
+//                for (String value : hospitalInfomap.entrySet()) {
+//                    switch (value) {
+//                        case "조무사 병원" -> printUtil.printJomusa();
+//                    }
+//
+//                }
+
+                for (Map.Entry<HospitalInfo, String> hospitalInfoStringEntry : hospitalInfomap.entrySet()) {
+                }
+
             } else if (select == 3) {
                 break;
             }

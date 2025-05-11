@@ -6,6 +6,8 @@ public class HospitalInfo {
     private char bloodType;
     private String disease;
     private String department;
+    private long price;
+    private boolean payed;
 
     public HospitalInfo(String name, String birth, char bloodType) {
         this.name = name;
@@ -39,5 +41,21 @@ public class HospitalInfo {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
+    public boolean isPayed() {
+        return payed;
+    }
+
+    public void setPayed(boolean payed) {
+        this.payed = payed;
     }
 }

@@ -18,12 +18,10 @@ public class PriceUtil {
         if (hospital.getLocation().equals("서울")) {
             price += 1500;
         }
-        if (medicalInfo.getDepartment().equals("정형외과")) {
-            price += 15000;
-        } else if (medicalInfo.getDepartment().equals("피부과")) {
-            price += 12000;
-        } else if (medicalInfo.getDepartment().equals("내과")) {
-            price += 4500;
+        switch (medicalInfo.getDepartment()) {
+            case "정형외과" -> price += 15000;
+            case "피부과" -> price += 12000;
+            case "내과" -> price += 4500;
         }
         return price;
     }
