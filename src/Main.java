@@ -44,7 +44,7 @@ public class Main {
                 System.out.print("혈액형 : ");
                 char bloodType = sc.next().charAt(0);
 
-                User user = new User(name, birth, bloodType);
+                User user = new User(name, birth);
 
                 printUtil.printHospitals();
                 int hospitalName = sc.nextInt();

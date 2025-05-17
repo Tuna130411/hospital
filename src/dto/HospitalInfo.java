@@ -1,5 +1,7 @@
 package dto;
 
+import domain.Hospital;
+
 public class HospitalInfo {
     private final String name;
     private final String birth;
@@ -58,4 +60,6 @@ public class HospitalInfo {
     public void setPayed(boolean payed) {
         this.payed = payed;
     }
+
+
 }
