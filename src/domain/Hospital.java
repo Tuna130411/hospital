@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hospital {
-    private String name;
-    private String location;
+    private final String name;
+    private final String location;
 
-    private List<HospitalInfo> hospitalInfos = new ArrayList<>();
+    private final List<HospitalInfo> hospitalInfos = new ArrayList<>();
 
 
 

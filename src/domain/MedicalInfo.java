@@ -14,10 +14,6 @@ public class MedicalInfo {
         this.isPayed = false;
     }
 
-    public boolean isPayed() {
-        return isPayed;
-    }
-
     public void setPayed(boolean payed) {
         isPayed = payed;
     }
@@ -26,21 +22,6 @@ public class MedicalInfo {
         return disease;
     }
 
-    public void setDisease(String disease) {
-        this.disease = disease;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Hospital getHospital() {
-        return hospital;
-    }
 
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;

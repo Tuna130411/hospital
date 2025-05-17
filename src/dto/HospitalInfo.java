@@ -1,9 +1,9 @@
 package dto;
 
 public class HospitalInfo {
-    private String name;
-    private String birth;
-    private char bloodType;
+    private final String name;
+    private final String birth;
+    private final char bloodType;
     private String disease;
     private String department;
     private long price;

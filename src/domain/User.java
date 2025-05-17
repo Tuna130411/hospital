@@ -3,26 +3,12 @@ package domain;
 import java.util.Arrays;
 
 public class User {
-    private String name;
-    private String birth;
-    private char bloodType;
+    private final String name;
+    private final String birth;
 
     public User(String name, String birth, char bloodType) {
         this.name = name;
         this.birth = birth;
-        this.bloodType = bloodType;
-    }
-
-    public char getBloodType() {
-        return bloodType;
-    }
-
-    public String getBirth() {
-        return birth;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public int getAge() {

@@ -137,6 +137,18 @@ public class Main {
 //                }
 
                 for (Map.Entry<HospitalInfo, String> hospitalInfoStringEntry : hospitalInfomap.entrySet()) {
+                    switch (hospitalInfoStringEntry.getValue()) {
+                        case "조무사 병원" :
+                            printUtil.printJomusa(hospitalInfoStringEntry.getKey());
+                            break;
+                        case "가톨릭 병원" :
+                            printUtil.printCatholic(hospitalInfoStringEntry.getKey());
+                            break;
+                        case "coma 병원" :
+                            printUtil.printComa(hospitalInfoStringEntry.getKey());
+
+                    }
+
                 }
 
             } else if (select == 3) {
